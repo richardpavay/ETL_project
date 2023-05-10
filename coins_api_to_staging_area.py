@@ -39,10 +39,10 @@ df = pd.DataFrame(data=result)
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password='Frissito2019'
+  password='Placeholder2023'
 )
 
-conn = create_engine('mysql+mysqldb://root:Frissito2019@localhost/coins')
+conn = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
 
 # Inserting DataFrame to MySQL database
 df.to_sql(con=conn,name='coin_prices',if_exists='append',index=False)

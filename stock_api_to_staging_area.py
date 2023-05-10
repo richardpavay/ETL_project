@@ -24,10 +24,10 @@ print(df_stock)
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password='Frissito2019'
+  password='Placeholder2023'
 )
 
-conn = create_engine('mysql+mysqldb://root:Frissito2019@localhost/coins')
+conn = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
 
 # inserting data to MYSQL database
 df_stock.to_sql(con=conn,name='stock_prices',if_exists='append',index=False)
