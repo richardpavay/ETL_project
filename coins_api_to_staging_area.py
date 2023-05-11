@@ -46,4 +46,3 @@ conn = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
 
 # Inserting DataFrame to MySQL database
 df.to_sql(con=conn,name='coin_prices',if_exists='append',index=False)
-# Testing if the workflows work
