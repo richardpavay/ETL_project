@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 
 # setting up MySQL connection
 conn_mysql = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
-conn_pg = create_engine('postgresql+psycopg2://postgres:Placeholder2023@localhost/warehouse')
+conn_pg = create_engine('postgresql+psycopg2://postgres:admin@localhost/warehouse')
 # Querying, Grouping, Transforming to dfs
 # Getting distinct coin names, transforming into df
 coin_names = 'SELECT coin FROM coin_prices GROUP BY coin'

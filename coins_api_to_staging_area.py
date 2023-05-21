@@ -17,7 +17,7 @@ url = serviceurl + urllib.parse.urlencode(parms)
 uh = urllib.request.urlopen(url)
 data = uh.read().decode()
 js = json.loads(data)
-print(js)
+# print(js)
 
 # extracting Data from JSON, transforming it to python dictionary,the to pandas dataframe
 result = dict()
