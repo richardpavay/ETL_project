@@ -7,4 +7,6 @@ The main elements of the project (also please see: overwiev.drawio.png for the a
    - Local PostgreSQL database serving as a data warehouse (for schema, please see overview.drawio.png)
    - Python scripts serving as glue among the above mentioned elements
 
-
+The way forward for this project:
+- migrate it to an AWS cloud environment
+- convert it to using PySpark for Big Data and distributed processing compatibility
