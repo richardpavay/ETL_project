@@ -2,16 +2,18 @@
 import pandas as pd
 import urllib.request, urllib.parse, urllib.error
 import json
-import mysql.connector
 from sqlalchemy import create_engine
 from datetime import date
 
+# Setting up MySQL connection
+CONN = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
+
 # Setting up API parameters
-serviceurl = 'https://api.coinstats.app/public/v1/coins?'
-currency = 'USD'
+SERVICEURL = 'https://api.coinstats.app/public/v1/coins?'
+CURRENCY = 'USD'
 parms = dict()
-parms[currency] = currency
-url = serviceurl + urllib.parse.urlencode(parms)
+parms[currency] = CURRENCY
+url = SERVICEURL + urllib.parse.urlencode(parms)
 
 # connecting to API, retrieving JSON
 uh = urllib.request.urlopen(url)
@@ -21,28 +23,19 @@ js = json.loads(data)
 
 # extracting Data from JSON, transforming it to python dictionary,the to pandas dataframe
 result = dict()
-c = list()
-p = list()
-d = list()
+names_list = list()
+prices_list = list()
+dates_list = list()
 current_date = date.today()
 for x in js['coins']:
-    c.append(x['name'])
-    p.append(x['price'])
-    d.append(current_date)
+    names_list.append(x['name'])
+    prices_list.append(x['price'])
+    dates_list.append(current_date)
 
-result['coin'] = c
-result['price'] = p
-result['date'] = d
+result['coin'] = name_list
+result['price'] = prices_list
+result['date'] = dates_list
 df = pd.DataFrame(data=result)
 
-# Setting up MySQL connection
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password='Placeholder2023'
-)
-
-conn = create_engine('mysql+mysqldb://root:Placeholder2023@localhost/coins')
-
 # Inserting DataFrame to MySQL database
-df.to_sql(con=conn,name='coin_prices',if_exists='append',index=False)
+df.to_sql(con=CONN,name='coin_prices',if_exists='append',index=False)
